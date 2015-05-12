@@ -5,8 +5,8 @@
 	session_start();
 
 	//make constants using define
-	define('client_ID', 'd99afae27fbc42c8bd2e4516f7b24590');
-	define('client_Secret', '94e5978deeb24fa4b6f4b7c2f76e1d77');
+	define('clientID', 'd99afae27fbc42c8bd2e4516f7b24590');
+	define('clientSecret', '94e5978deeb24fa4b6f4b7c2f76e1d77');
 	define('redirectURI', 'http://localhost/Apie/index.php');
 	define('ImageDirectory', 'pics/');
 ?>
@@ -22,15 +22,20 @@ http://localhost/Apie/index.php
 REDIRECT URI
 http://localhost/Apie/index.php -->
 
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
-	<title></title>
+	<meta charset="utf-8">
+	<meta name="description" content="">
+	<meta  name="viewport" content="width-device-width, initial-scale=1">
+	<title>Kawaii</title>
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="author" href="humans.txt">
 </head>
 <body>
 		<!--Creating a login for people to go and give approval for our web app to access their Instagram Account
 		After getting approval we are now going to have the information so we can play with it.
 		-->
-		<a href="https:api.instagram/oauth/authorize/?client_id= <?php echo client_ID; ?>^redirect_url=<?php echo redirectURI; ?>response_type=code">LOGIN</a>
+		<a href="https:api.instagram.com/oauth/authorize/?client_id=<?php echo clientID; ?>&redirect_uri=<?php echo redirectURI; ?>&response_type=code">LOGIN</a>
 </body>
 </html>
