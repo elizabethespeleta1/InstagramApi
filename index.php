@@ -10,11 +10,18 @@
 	define('redirectURI', 'http://localhost/Apie/index.php');
 	define('ImageDirectory', 'pics/');
 
+	//isset checks for booligans
+	//checking if it gets the code
 	if isset(($_GET['code'])){
+		//this gets the code
 		$code = ($_GET['code']);
+		//this url is get the access the token
 		$url = 'https://api.instagram.com/oauth/access_token';
+		//array to access the tokens
 		$access_token_settings = array('client_id' => client_id,
+			//your client secret
 			'client_secret' => clientSecret,
+			//supported value
 			'grant_type' => 'authorization_code',
 			'redirect_uri' => redirectURI,
 			'code' => $code
