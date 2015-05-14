@@ -18,7 +18,7 @@
 		//this url is gets the access the token
 		$url = 'https://api.instagram.com/oauth/access_token';
 		//array to access the tokens
-		$access_token_settings = array('client_id' => client_id,
+		$access_token_settings = array('client_id' => clientID,
 			//your client secret
 			'client_secret' => clientSecret,
 			//supported value
@@ -33,10 +33,15 @@
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1); //setting it equal to 1 because we are getting strings back
 		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false); //but in live work-production we want to set this to true
 
+	$result = curl_exec($curl);
+	curl_close($curl);
+
+	$results = json_decode($result, true);
+	echo $results['user']['username'];
+	
 	}
 
-	$result = curl_exec($curl);
-	curl_close();
+	else{
 
 ?>
 
@@ -68,3 +73,7 @@ http://localhost/Apie/index.php -->
 		<a href="https:api.instagram.com/oauth/authorize/?client_id=<?php echo clientID; ?>&redirect_uri=<?php echo redirectURI; ?>&response_type=code">LOGIN</a>
 </body>
 </html>
+
+<?php 
+}
+?>
