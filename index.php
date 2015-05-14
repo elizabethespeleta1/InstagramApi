@@ -10,15 +10,19 @@
 	define('redirectURI', 'http://localhost/Apie/index.php');
 	define('ImageDirectory', 'pics/');
 
+	//function that is going to connect to Instagram
 	function connectToInstagram($url){
+		//ch is a cUrl handle returned by curl_init
 		$ch = curl_init();
 
+		//Set multiple options for a cURL transfer
 		curl_setopt_array($ch, array{
-			CURLOPT_URL = $url;
-			CURLOPT_RETURNTRANSFER = true;
-			CURLOPT_SSL_VERIFYPEER = false;
-			CURLOPT_SSL_VERIFYHOST = 2,
+			CURLOPT_URL = $url,
+			CURLOPT_RETURNTRANSFER = true, //TRUE to return the transfer as a string of the return value of curl_exec() instead of outputting it out directly.
+			CURLOPT_SSL_VERIFYPEER = false, //FALSE to stop cURL from verifying the peer's certificate. 
+			CURLOPT_SSL_VERIFYHOST = 2, 
 		});
+
 		$result = curl_exec($ch);
 		curl_close($ch);
 		return $result;
