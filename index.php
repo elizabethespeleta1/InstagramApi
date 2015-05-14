@@ -16,16 +16,24 @@
 		$ch = curl_init();
 
 		//Set multiple options for a cURL transfer
-		curl_setopt_array($ch, array{
-			CURLOPT_URL = $url,
-			CURLOPT_RETURNTRANSFER = true, //TRUE to return the transfer as a string of the return value of curl_exec() instead of outputting it out directly.
-			CURLOPT_SSL_VERIFYPEER = false, //FALSE to stop cURL from verifying the peer's certificate. 
-			CURLOPT_SSL_VERIFYHOST = 2, 
-		});
+		curl_setopt_array($ch, array(
+			CURLOPT_URL => $url,
+			CURLOPT_RETURNTRANSFER => true, //TRUE to return the transfer as a string of the return value of curl_exec() instead of outputting it out directly.
+			CURLOPT_SSL_VERIFYPEER => false, //FALSE to stop cURL from verifying the peer's certificate. 
+			CURLOPT_SSL_VERIFYHOST => 2, 
+		));
 
 		$result = curl_exec($ch);
 		curl_close($ch);
 		return $result;
+	}
+
+	function getUserID($userName){
+		$url = 'https://api.instagram.com/v1/users/search?q='.$userName.'&client_id'.clientID;
+		$instagramInfo = connectToInstagram($url);
+		$results = json_decode($instagramInfo, true);
+
+		return $results['data']['0']['id'];
 	}
 
 
@@ -58,7 +66,7 @@
 
 	//json_decode decodes a json string
 	$results = json_decode($result, true);
-	echo $results['user']['username'];
+	getUserId($results['user']['username']);
 	
 	}
 
