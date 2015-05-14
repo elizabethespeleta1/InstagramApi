@@ -9,6 +9,18 @@
 	define('clientSecret', '94e5978deeb24fa4b6f4b7c2f76e1d77');
 	define('redirectURI', 'http://localhost/Apie/index.php');
 	define('ImageDirectory', 'pics/');
+
+	if isset(($_GET['code'])){
+		$code = ($_GET['code']);
+		$url = 'https://api.instagram.com/oauth/access_token';
+		$access_token_settings = array('client_id' => client_id,
+			'client_secret' => clientSecret,
+			'grant_type' => 'authorization_code',
+			'redirect_uri' => redirectURI,
+			'code' => $code
+			);
+	}
+
 ?>
 
 
