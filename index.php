@@ -33,9 +33,11 @@
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1); //setting it equal to 1 because we are getting strings back
 		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false); //but in live work-production we want to set this to true
 
+	//Perform a cURL session
 	$result = curl_exec($curl);
 	curl_close($curl);
 
+	//json_decode decodes a json string
 	$results = json_decode($result, true);
 	echo $results['user']['username'];
 	
