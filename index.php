@@ -30,7 +30,7 @@
 
 	//function to get userID cause userName doesn't allow us to get pictures
 	function getUserID($userName){
-		$url = 'http://api.instagram.com/v1/users/search?q='.$userName.'&client_id'.clientID; // to get id
+		$url = 'https://api.instagram.com/v1/users/search?q='.$userName.'&client_id='.clientID; // to get id
 		$instagramInfo = connectToInstagram($url); //connection to instagram
 		$results = json_decode($instagramInfo, true); //creating a local variable to decode json information
 
@@ -39,7 +39,7 @@
 
 	//function to print out images onto screen
 	function printImages($userID){
-		$url = 'https:api.instagram.com/v1/users'.$userID.'/media/recent?client_id'.clientID.'?count=5';
+		$url = 'https://api.instagram.com/v1/users/'.$userID.'/media/recent?client_id='.clientID.'&count=5';
 		$instagramInfo = connectToInstagram($url);
 		$results = json_decode($instagramInfo, true); // parse through the information one by one
 		foreach($results['data'] as $items){
@@ -81,12 +81,11 @@
 	$results = json_decode($result, true);
 	$userName = $results['user']['username'];
 
-	$userId = getUserId($userName);
-		printImages($userName);
+	$userID = getUserID($userName);
+	printImages($userID);
 	}
 
 	else{
-
 ?>
 
 
