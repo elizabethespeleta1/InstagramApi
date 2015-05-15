@@ -37,12 +37,13 @@
 		return $results['data']['0']['id']; //returning a userID
 	}
 
+	//function to print out images onto screen
 	function printImages($userID){
 		$url = 'https:api.instagram.com/v1/users'.$userID.'/media/recent?client_id'.clientID.'?count=5';
 		$instagramInfo = connectToInstagram($url);
-		$results = json_decode($instagramInfo, true);
+		$results = json_decode($instagramInfo, true); // parse through the information one by one
 		foreach($results['data'] as $items){
-			$image_url = $items['images']['low_resolution']['url'];
+			$image_url = $items['images']['low_resolution']['url']; //going to go through all of my ressults and give myself back the url of those pictures because we want it to save it in the PHP server
 			echo '<img src=" '.$image_url.' "/><br>';
 		}
 	}
